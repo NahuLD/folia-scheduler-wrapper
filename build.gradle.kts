@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    group = "me.nahu.scheduler.wrapper"
+    group = "me.nahu.wrapper"
 }
 
 subprojects {
