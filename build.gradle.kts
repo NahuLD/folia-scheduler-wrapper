@@ -1,23 +1,51 @@
 plugins {
-    id("java")
+    java
+    `java-library`
+    `maven-publish`
 }
 
-group = "me.nahu.folia"
+subprojects {
+    apply {
+        plugin("java")
+        plugin("java-library")
+        plugin("maven-publish")
+    }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = sourceCompatibility
-}
+    group = "me.nahu.folia"
 
-repositories {
-    mavenCentral()
-}
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = sourceCompatibility
+    }
 
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
+    repositories {
+        mavenCentral()
 
-tasks.test {
-    useJUnitPlatform()
+        maven {
+            url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        }
+
+        maven {
+            url = uri("https://hub.spigotmc.org/nexus/content/repositories/public/")
+        }
+
+        maven {
+            url = uri("https://repo.papermc.io/repository/maven-public/")
+        }
+
+        maven {
+            url = uri("https://nexuslite.gcnt.net/repos/paper/")
+        }
+    }
+
+    dependencies {
+        compileOnly("org.jetbrains:annotations:23.0.0")
+
+        testImplementation(platform("org.junit:junit-bom:5.9.1"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+    }
+
+    tasks.test {
+        useJUnitPlatform()
+    }
 }
