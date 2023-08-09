@@ -9,11 +9,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/folia-scheduler-wrapper" />
             <option value="$PROJECT_DIR$/platform" />
             <option value="$PROJECT_DIR$/platform/bukkit" />
             <option value="$PROJECT_DIR$/platform/common" />
             <option value="$PROJECT_DIR$/platform/folia" />
-            <option value="$PROJECT_DIR$/wrapper" />
           </set>
         </option>
       </GradleProjectSettings>

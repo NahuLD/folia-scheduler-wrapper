@@ -4,6 +4,10 @@ plugins {
     `maven-publish`
 }
 
+allprojects {
+    group = "me.nahu.scheduler.wrapper"
+}
+
 subprojects {
     apply {
         plugin("java")
@@ -11,11 +15,12 @@ subprojects {
         plugin("maven-publish")
     }
 
-    group = "me.nahu.folia"
-
     java {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = sourceCompatibility
+
+        withSourcesJar()
+        withJavadocJar()
     }
 
     repositories {
@@ -47,5 +52,13 @@ subprojects {
 
     tasks.test {
         useJUnitPlatform()
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("mavenJava") {
+                from(components["java"])
+            }
+        }
     }
 }
