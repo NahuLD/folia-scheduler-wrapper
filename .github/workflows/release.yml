@@ -43,4 +43,4 @@ jobs:
           BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
         run: ./gradlew publish --stacktrace
       - name: Remove jars before caching
-        run: rm ./build/libs/*.jar
+        run: rm ./build/*.jar

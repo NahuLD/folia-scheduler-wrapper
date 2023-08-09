@@ -10,6 +10,10 @@ dependencies {
 }
 
 tasks {
+    shadowJar {
+        destinationDirectory.set(rootProject.buildDir)
+    }
+
     assemble {
         dependsOn(shadowJar)
     }

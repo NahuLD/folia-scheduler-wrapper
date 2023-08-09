@@ -65,7 +65,7 @@ public final class LazyValue<T> {
     /**
      * Get and load the value if necessary. This does not guarantee that the supplier will providea non-null value,
      * thus it is marked as such.
-     * <p></p>
+     * <p>
      * For an optional wrapped object, you can call {@link #eager()} to load, and then {@link #getIfLoaded()}.
      *
      * @return {@link T} value.

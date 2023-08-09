@@ -50,8 +50,10 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter")
     }
 
-    tasks.test {
-        useJUnitPlatform()
+    tasks {
+        test {
+            useJUnitPlatform()
+        }
     }
 
     publishing {
