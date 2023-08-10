@@ -1,8 +1,8 @@
 package me.nahu.scheduler.wrapper;
 
 import com.google.common.base.Preconditions;
-import me.nahu.scheduler.wrapper.implementation.folia.FoliaWrappedScheduler;
 import me.nahu.scheduler.wrapper.implementation.bukkit.BukkitWrappedScheduler;
+import me.nahu.scheduler.wrapper.implementation.folia.FoliaWrappedScheduler;
 import me.nahu.scheduler.wrapper.type.ImplementationType;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -15,12 +15,13 @@ import java.util.Objects;
 public final class WrappedSchedulerBuilder {
 
     private Plugin plugin;
-    private ImplementationType implementationType = find();
+    private ImplementationType implementationType;
 
     /**
      * Private constructor for the wrapped scheduler.
      */
     private WrappedSchedulerBuilder() {
+        this.implementationType = ImplementationType.find();
     }
 
     /**
@@ -78,24 +79,11 @@ public final class WrappedSchedulerBuilder {
     }
 
     /**
-     * Find the implementation type applicable for this server.
-     *
-     * @return {@link ImplementationType} implementation type.
+     * @deprecated Please use {@link ImplementationType#find()} instead.
      */
     @NotNull
+    @Deprecated(forRemoval = true)
     public static ImplementationType find() {
-        for (ImplementationType implementationType : ImplementationType.values()) {
-            for (String className : implementationType.getClassNames()) {
-                try {
-                    // Try to load the class
-                    Class.forName(className);
-
-                    // Found the server type, remember that and break the loop
-                    return implementationType;
-                } catch (ClassNotFoundException ignored) {
-                }
-            }
-        }
-        return ImplementationType.UNKNOWN;
+        return ImplementationType.find();
     }
 }
