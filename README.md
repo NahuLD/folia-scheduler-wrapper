@@ -46,6 +46,13 @@ scheduler.runTaskTimerAsynchronously(
     20L
 );
 
+// run task at the regional thread for the provided entity!
+final Player player = getPlayer();
+scheduler.runTaskAtEntity(
+    player,
+    () -> player.updateInventory()
+);
+
 // Bukkit-runnable replacements built-in!
 new WrappedRunnable() {
     @Override
