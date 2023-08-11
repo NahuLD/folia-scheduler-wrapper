@@ -37,10 +37,5 @@ jobs:
           files: ./build/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish artifact
-        env:
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-          BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
-        run: ./gradlew publish --stacktrace
       - name: Remove jars before caching
         run: rm ./build/*.jar

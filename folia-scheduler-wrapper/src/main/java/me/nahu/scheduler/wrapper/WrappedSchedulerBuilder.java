@@ -59,7 +59,7 @@ public final class WrappedSchedulerBuilder {
         Objects.requireNonNull(plugin, "Plugin cannot be null!");
         Objects.requireNonNull(implementationType, "Implementation type cannot be null!");
 
-        Preconditions.checkArgument(implementationType.isUnknown(), "Implementation type cannot be unknown!");
+        Preconditions.checkArgument(!implementationType.isUnknown(), "Implementation type cannot be unknown!");
 
         //noinspection SwitchStatementWithTooFewBranches
         return switch (implementationType) {
