@@ -1,0 +1,3 @@
+# Use appropriate JDK version
+jdk:
+  - openjdk17
