@@ -1,13 +1,49 @@
 # folia-scheduler-wrapper
 [![CodeFactor](https://www.codefactor.io/repository/github/nahuld/folia-scheduler-wrapper/badge)](https://www.codefactor.io/repository/github/nahuld/folia-scheduler-wrapper)
+[![](https://jitpack.io/v/NahuLD/folia-scheduler-wrapper.svg)](https://jitpack.io/#NahuLD/folia-scheduler-wrapper)
 
 Wrapper for Folia schedulers intended to make migration as simple as possible while still maintaining cross-compatibility with the Bukkit scheduler API.
 
-### Requirements
+## Requirements
 - Java 17 or above.
 - Bukkit, Paper or Folia server.
 
-### Usage
+## Dependency
+
+> [!WARNING]\
+> You are expected to relocate the package to your own sub-package to prevent conflicts with other plugins!
+
+### Maven
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.NahuLD</groupId>
+        <artifactId>folia-scheduler-wrapper</artifactId>
+        <version>v0.0.2</version>
+    </dependency>
+</dependencies>
+```
+
+### Gradle
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.NahuLD:folia-scheduler-wrapper:v0.0.2'
+}
+```
+
+
+## Usage
 There are multiple ways of accessing an instance of `WrappedScheduler`.
 
 One way is creating it by yourself, utilizing a new instance of `WrappedSchedulerBuilder`.
@@ -66,14 +102,14 @@ new WrappedRunnable() {
 
 You can find all methods available and the corresponding documentation for each on the [WrappedScheduler](platform/common/src/main/java/me/nahu/scheduler/wrapper/WrappedScheduler.java) file. The published artifacts have sources and JavaDocs bundled with them to make working with it seamless as well.
 
-### How to build
+## How to build
 
 1. Run `./gradlew build` in the project's root!
 2. Fetch your jar at `build/`.
 
 _Please use a dependency management system like Gradle or Maven instead though!_
 
-### License
+## License
 
 The contents of this repository are licensed under the MIT license.
 So do with this code as you wish! 
