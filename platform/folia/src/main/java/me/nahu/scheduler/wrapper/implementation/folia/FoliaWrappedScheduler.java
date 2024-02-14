@@ -13,6 +13,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -103,10 +105,8 @@ public final class FoliaWrappedScheduler implements WrappedScheduler {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull WrappedTask runTaskAtEntity(@NotNull Entity entity, @NotNull Runnable runnable) {
-        return setupTask(Objects.requireNonNull(
-            entity.getScheduler().run(plugin, __ -> runnable.run(), EMPTY_RUNNABLE)
-        ));
+    public @Nullable WrappedTask runTaskAtEntity(@NotNull Entity entity, @NotNull Runnable runnable) {
+        return setupTask(entity.getScheduler().run(plugin, __ -> runnable.run(), EMPTY_RUNNABLE));
     }
 
     /**
@@ -137,10 +137,8 @@ public final class FoliaWrappedScheduler implements WrappedScheduler {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull WrappedTask runTaskTimerAtEntity(@NotNull Entity entity, @NotNull Runnable runnable, long delay, long period) {
-        return setupTask(
-            Objects.requireNonNull(entity.getScheduler().runAtFixedRate(plugin, __ -> runnable.run(), EMPTY_RUNNABLE, delay, period))
-        );
+    public @Nullable WrappedTask runTaskTimerAtEntity(@NotNull Entity entity, @NotNull Runnable runnable, long delay, long period) {
+        return setupTask(entity.getScheduler().runAtFixedRate(plugin, __ -> runnable.run(), EMPTY_RUNNABLE, delay, period));
     }
 
     /**
@@ -171,10 +169,8 @@ public final class FoliaWrappedScheduler implements WrappedScheduler {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull WrappedTask runTaskLaterAtEntity(@NotNull Entity entity, @NotNull Runnable runnable, long delay) {
-        return setupTask(
-            Objects.requireNonNull(entity.getScheduler().runDelayed(plugin, __ -> runnable.run(), EMPTY_RUNNABLE, delay))
-        );
+    public @Nullable WrappedTask runTaskLaterAtEntity(@NotNull Entity entity, @NotNull Runnable runnable, long delay) {
+        return setupTask(entity.getScheduler().runDelayed(plugin, __ -> runnable.run(), EMPTY_RUNNABLE, delay));
     }
 
     /**
@@ -191,8 +187,11 @@ public final class FoliaWrappedScheduler implements WrappedScheduler {
      * @param task {@link ScheduledTask} task.
      * @return {@link WrappedTask} wrapped task.
      */
-    @NotNull
-    private WrappedTask setupTask(@NotNull ScheduledTask task) {
+    @UnknownNullability
+    private WrappedTask setupTask(@Nullable ScheduledTask task) {
+        if (task == null) {
+            return null;
+        }
         return new FoliaWrappedTask(task);
     }
 

@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Wrapped server scheduler.
@@ -71,6 +72,8 @@ public interface WrappedScheduler {
      * Run a new task.
      * <p>
      * Folia: Synced with the tick of the region of the entity (even if the entity moves).
+     * If the entity is not valid the task will not run, and {@code null} will be returned.
+     *
      * <p>
      * Paper: Synced with the server main thread.
      *
@@ -78,7 +81,7 @@ public interface WrappedScheduler {
      * @param runnable Runnable to run.
      * @return {@link WrappedTask} task reference.
      */
-    @NotNull
+    @Nullable
     WrappedTask runTaskAtEntity(@NotNull Entity entity, @NotNull Runnable runnable);
 
     /**
@@ -129,6 +132,7 @@ public interface WrappedScheduler {
      * Run a new task timer.
      * <p>
      * Folia: Synced with the tick of the region of the entity (even if the entity moves).
+     * If the entity is not valid the task will not run, and {@code null} will be returned.
      * <p>
      * Paper: Synced with the server main thread.
      *
@@ -138,7 +142,7 @@ public interface WrappedScheduler {
      * @param period Delay between executions. Must be greater than zero.
      * @return {@link WrappedTask} task reference.
      */
-    @NotNull
+    @Nullable
     WrappedTask runTaskTimerAtEntity(@NotNull Entity entity, @NotNull Runnable runnable, long delay, long period);
 
     /**
@@ -189,6 +193,7 @@ public interface WrappedScheduler {
      * Run a new task later.
      * <p>
      * Folia: Synced with the tick of the region of the entity (even if the entity moves).
+     * If the entity is not valid the task will not run, and {@code null} will be returned.
      * <p>
      * Paper: Synced with the server main thread.
      *
@@ -197,7 +202,7 @@ public interface WrappedScheduler {
      * @param delay Delay before first execution. Must be greater than zero.
      * @return {@link WrappedTask} task reference.
      */
-    @NotNull
+    @Nullable
     WrappedTask runTaskLaterAtEntity(@NotNull Entity entity, @NotNull Runnable runnable, long delay);
 
     /**
