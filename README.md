@@ -23,11 +23,11 @@ Wrapper for Folia schedulers intended to make migration as simple as possible wh
 </repositories>
 
 <dependencies>
-    <dependency>
-        <groupId>com.github.NahuLD</groupId>
-        <artifactId>folia-scheduler-wrapper</artifactId>
-        <version>v0.0.2</version>
-    </dependency>
+	<dependency>
+	    <groupId>com.github.NahuLD.folia-scheduler-wrapper</groupId>
+	    <artifactId>folia-scheduler-wrapper</artifactId>
+	    <version>v0.0.3</version>
+	</dependency>
 </dependencies>
 ```
 
@@ -38,10 +38,20 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.NahuLD:folia-scheduler-wrapper:v0.0.2'
+    implementation 'com.github.NahuLD.folia-scheduler-wrapper:folia-scheduler-wrapper:v0.0.3'
 }
 ```
 
+### Gradle (Kotlin)
+```groovy
+repositories {
+    maven("https://jitpack.io")
+}
+
+dependencies {
+    implementation("com.github.NahuLD.folia-scheduler-wrapper:folia-scheduler-wrapper:v0.0.3")
+}
+```
 
 ## Usage
 There are multiple ways of accessing an instance of `WrappedScheduler`.
